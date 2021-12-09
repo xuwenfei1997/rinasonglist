@@ -1,0 +1,81 @@
+.dark-mode {
+    background-color: black;
+    color: white;
+  }
+  
+  .dark-mode th {
+    color: white;
+  }
+  
+  .dark-mode .label {
+    color: white;
+  }
+  
+  
+  
+  header {
+    background-color: #7779c7;
+  }
+  
+  
+  .btn {
+    border: 1px solid white;
+  }
+  
+  img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .table-responsive {
+    padding-left: 10%;
+    padding-right: 10%;
+  }
+  
+  table {
+    border: 1px solid black;
+    border-radius: 2px;
+  }
+  
+  table th {
+    cursor: pointer;
+  }
+  
+  table.sortable th:not(.sorttable_sorted):not(.sorttable_sorted_reverse):not(.sorttable_nosort):after {
+    content: " \25B4\25BE"
+  }
+  
+  th span {
+    border-radius: 2px;
+    padding: 1px 5px;
+  }
+  
+  .singer span {
+    background-color: #E7F5EE;
+    border-radius: 2px;
+    padding: 1px 5px;
+    border: 1px solid #A8DBC1;
+  }
+  
+  .song span {
+    background-color: #DFF8FF;
+    border-radius: 2px;
+    padding: 1px 5px;
+    border: 1px solid #a7c1fa;
+    
+  }
+  
+  .label span {
+    padding: 1px 5px;
+  }
+  
+  .bi {
+    vertical-align: -.125em;
+    fill: currentColor;
+  }
+  
+  header.dark-mode {
+    border: 1px solid grey;
+  }
+    
+    
