@@ -7,9 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Bootstrap CSS-->
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/styles.css">
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
     <script type="text/javascript" src="/js/sorttable.js"></script>
-    <title>Rynia-Songlist</title>
+    <script type="text/javascript" src="/js/jquery-3.6.0.min.js"></script>
+    <title>RinaSonglist</title>
     <script type="text/javascript">function onSearch() {
             var tableId = document.getElementById('songs');
             var rowsLength = tableId.rows.length;
@@ -73,6 +74,106 @@
             document.getElementById('key').value = '';
         }
     </script>
+    <script>
+        $.getJSON("songlist.json", "", function(data) {　 //each循环 使用$.each方法遍历返回的数据date
+            
+  		$.each(data, function(i, item) {
+            var list=document.getElementById('list')
+            var tr=document.createElement('tr')
+            list.appendChild(tr)
+            var td1=document.createElement('td')
+            $(td1).addClass("label")
+            tr.appendChild(td1);
+            var span1=document.createElement('span')
+            var text1=document.createTextNode(item.number);
+            td1.appendChild(span1)
+            span1.appendChild(text1)
+
+            var td2=document.createElement('td')
+            $(td2).addClass("song")
+            tr.appendChild(td2);
+            var span2=document.createElement('span')
+            var text2=document.createTextNode(item.song);
+            td2.appendChild(span2)
+            span2.appendChild(text2)
+
+
+            var td3=document.createElement('td')
+            $(td3).addClass("singer")
+            tr.appendChild(td3);
+            var span3=document.createElement('span')
+            var text3=document.createTextNode(item.artist);
+            td3.appendChild(span3)
+            span3.appendChild(text3)
+
+            var td4=document.createElement('td')
+            $(td4).addClass("language")
+            tr.appendChild(td4);
+            var span4=document.createElement('span')
+            var text4=document.createTextNode(item.language);
+            td4.appendChild(span4)
+            span4.appendChild(text4)
+  			
+  		})
+  	});
+    </script>
+
+
+     <!-- 
+    <script>
+
+        var convertJson = document.getElementById("convertJson");
+        var reset = document.getElementById("reset");
+
+        convertJson.onclick = function () {
+            convertTable();
+        }
+
+        reset.onclick = function () {
+            resetTable();
+        }
+
+        function convertTable() {
+            var jsonString = document.getElementById("jsonText").value;
+            var jsonData = new Function("return " + jsonString)();
+            var i;
+            var jsonLength = !jsonData ? 0 : jsonData.length;
+            var temp;
+            var tbl;
+            var tr;
+            var td;
+            var body;
+            var tableDiv = document.getElementById("tableDiv");
+
+            if (tableDiv.childElementCount > 0) {
+                return;
+            }
+
+            tbl = document.createElement("table");
+            tbl.border = "1px";
+            tbl.borderColor = "red";
+            for (i = 0; i < jsonLength; i++) {
+                tr = document.createElement("tr");
+                for (temp in jsonData[i]) {
+                    td = document.createElement("td");
+                    td.appendChild(document.createTextNode(jsonData[i][temp]));
+                    tr.appendChild(td);
+                }
+                if (i == jsonLength - 1) {
+                    tr.margin = "0 0 5 0";
+                }
+                tbl.appendChild(tr);
+            }
+            tableDiv.appendChild(tbl);
+        }
+
+
+
+
+
+
+    </script>
+     --> 
 </head>
 
 <body>
@@ -81,14 +182,13 @@
             <div class="container">
                 <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"><a
                         class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none" href="/"><img
-                            class="bi me-2" src="/logo.jpg" width="50" height="50"></a>
+                            class="bi me-2" src="/logo.png" width="50" height="50"></a>
                     <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                        <li><a class="nav-link px-2 text-white" href="/">大力歌单</a></li>
+                        <li><a class="nav-link px-2 text-white" href="/">林莉奈歌单</a></li>
                         <li><a class="nav-link px-2 text-white" href="https://space.bilibili.com/1243266187">b站主页</a>
                         </li>
                         <li><a class="nav-link px-2 text-white" href="https://live.bilibili.com/22742508">直播间</a></li>
-                        <li><a class="nav-link px-2 text-white" href="">占位</a>
-                        </li>
+                        
                     </ul>
                     <div class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" id="form"><input
                             class="form-control form-control-dark" id="key" type="search" placeholder="输入歌名或歌手"
@@ -132,9 +232,10 @@
                         <th class="col-1"><span>编号</span></th>
                         <th class="col-6"><span>歌名</span></th>
                         <th class="col-5"><span>歌手</span></th>
+                        <th class="col-2"><span>语言</span></th>
                     </tr>
                 </thead>
-                <tfoot></tfoot>
+                <tbody id='list'></tbody>
             </table>
         </div>
     </main>
